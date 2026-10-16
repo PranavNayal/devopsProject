@@ -244,6 +244,18 @@ Manifests for common operational failure modes are provided in `troubleshooting/
 
 ---
 
+## Presentation & Slide Deck (Module M10)
+
+The comprehensive capstone presentation deck and speaker notes are available in the repository:
+- **PowerPoint Presentation Deck**: [`presentation/TaskBoard_DevOps_Capstone_Presentation.pptx`](file:///home/pranav/devopsProject/presentation/TaskBoard_DevOps_Capstone_Presentation.pptx)
+  - 12 widescreen (16:9) slides covering architecture, testing, Docker, CI/CD, DevSecOps, Terraform, Kubernetes, Observability, and Live Demo runbook.
+- **Speaker Notes & Script**: [`presentation/PRESENTATION_NOTES.md`](file:///home/pranav/devopsProject/presentation/PRESENTATION_NOTES.md)
+  - Slide-by-slide talking points and demo walkthrough.
+- **Presentation Generator Script**: [`scripts/generate_presentation.py`](file:///home/pranav/devopsProject/scripts/generate_presentation.py)
+  - Reproducible script using `python-pptx` to rebuild or update the presentation deck.
+
+---
+
 ## Author & License
 - **Author**: Pranav Nayal
 - **Project**: DevOps Final Capstone (Session 21)
