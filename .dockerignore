@@ -1,0 +1,11 @@
+.git
+.github
+*.md
+.gitignore
+.dockerignore
+terraform/
+helm/
+k8s/
+monitoring/
+scripts/
+troubleshooting/
