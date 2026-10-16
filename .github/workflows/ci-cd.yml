@@ -77,7 +77,7 @@ jobs:
           docker build -t ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-frontend:${{ github.sha }} ./frontend
 
       - name: Scan Backend Image with Trivy
-        uses: aquasecurity/trivy-action@v0.30.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-backend:${{ github.sha }}
           format: 'table'
@@ -86,7 +86,7 @@ jobs:
           exit-code: '1'
 
       - name: Scan Frontend Image with Trivy
-        uses: aquasecurity/trivy-action@v0.30.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-frontend:${{ github.sha }}
           format: 'table'
