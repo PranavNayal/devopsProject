@@ -1,0 +1,10 @@
+frontend:
+  image: ghcr.io/pranavnayal/taskboard-frontend
+backend:
+  image: ghcr.io/pranavnayal/taskboard-backend
+replicaCount: 2
+ingress:
+  enabled: true
+  host: taskboard.example.com
+hpa:
+  enabled: true

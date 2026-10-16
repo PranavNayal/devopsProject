@@ -1,0 +1,17 @@
+{{- if .Values.monitoring.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "taskboard.fullname" . }}-backend
+  labels:
+    app: {{ include "taskboard.fullname" . }}-backend
+    release: {{ .Values.monitoring.serviceMonitor.release | default "kube-prometheus-stack" }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "taskboard.fullname" . }}-backend
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
+{{- end }}
