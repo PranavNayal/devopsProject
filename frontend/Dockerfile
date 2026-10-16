@@ -12,6 +12,9 @@ RUN npm run build
 # Stage 2: Serve with unprivileged NGINX (Non-Root User: UID 101)
 FROM nginxinc/nginx-unprivileged:1.27-alpine
 
+USER root
+RUN apk update && apk upgrade --no-cache
+
 # Copy built frontend assets
 COPY --from=build /app/dist /usr/share/nginx/html
 
