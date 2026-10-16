@@ -23,6 +23,11 @@ services:
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql+psycopg://taskboard:taskboard@postgres:5432/taskboard
+    networks:
+      default:
+        aliases:
+          - taskboard-backend
+          - backend
     depends_on:
       postgres:
         condition: service_healthy
