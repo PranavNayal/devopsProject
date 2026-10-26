@@ -2,6 +2,7 @@
 
 [![CI/CD Pipeline](https://github.com/PranavNayal/devopsProject/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/PranavNayal/devopsProject/actions/workflows/ci-cd.yml)
 
+> 🎬 **Capstone Demo Video**: Watch the live command-by-command video walkthrough: [**`demo/FlowBoard_DevOps_Capstone_Demo.mp4`**](demo/FlowBoard_DevOps_Capstone_Demo.mp4)  
 > 📊 **Capstone Presentation Deck**: View the complete 40-slide visual presentation directly in GitHub: [**`demo/FlowBoard_DevOps_Capstone_Presentation.pdf`**](demo/FlowBoard_DevOps_Capstone_Presentation.pdf)
 
 A production-grade, cloud-native project management SaaS application engineered by **Pranav Nayal** to demonstrate the complete modern DevOps lifecycle: from local containerized development to automated CI/CD quality gates, container vulnerability scanning, AWS Infrastructure as Code with Terraform, Kubernetes packaging with Helm, autoscaling, and end-to-end observability.
@@ -246,9 +247,11 @@ Manifests for common operational failure modes are provided in `troubleshooting/
 
 ---
 
-## Presentation & Slide Deck (Module M10)
+## Presentation & Live Demo (Module M10)
 
-The comprehensive capstone presentation deck and speaker notes are available in the repository:
+The comprehensive capstone presentation deck, live walkthrough video, and speaker notes are available in the repository:
+- **Full Project Demo Video**: [**`demo/FlowBoard_DevOps_Capstone_Demo.mp4`**](demo/FlowBoard_DevOps_Capstone_Demo.mp4)
+  - Live 720p HD terminal walkthrough running commands across all 10 modules (Pytest, Git, Docker, Trivy, Terraform, Helm, Prometheus, and Teardown).
 - **Presentation PDF (Direct View in Demo Folder)**: [**`demo/FlowBoard_DevOps_Capstone_Presentation.pdf`**](demo/FlowBoard_DevOps_Capstone_Presentation.pdf)
   - 40 widescreen (16:9) slides with diagrams covering architecture, testing, Docker, CI/CD, DevSecOps, Terraform, Kubernetes, Observability, and Live Demo runbook. Click to view directly in GitHub's PDF reader.
 - **Presentation PDF (Source Folder)**: [`presentation/FlowBoard_DevOps_Capstone_Presentation.pdf`](presentation/FlowBoard_DevOps_Capstone_Presentation.pdf)
@@ -256,7 +259,8 @@ The comprehensive capstone presentation deck and speaker notes are available in 
   - 40 widescreen (16:9) editable slide deck with native shapes, diagrams, and process flowcharts.
 - **Speaker Notes & Script**: [`presentation/PRESENTATION_NOTES.md`](presentation/PRESENTATION_NOTES.md)
   - Slide-by-slide talking points and demo walkthrough.
-- **Presentation Generator Scripts**:
+- **Automation & Generator Scripts**:
+  - Python Demo Video Generator: [`scripts/generate_demo_video.py`](scripts/generate_demo_video.py)
   - Python PPTX Generator: [`scripts/generate_presentation.py`](scripts/generate_presentation.py)
   - Python PDF Generator: [`scripts/generate_pdf.py`](scripts/generate_pdf.py)
 
