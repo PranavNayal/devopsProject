@@ -1,4 +1,4 @@
-# TaskBoard — DevOps Final Capstone Project
+# FlowBoard — DevOps Final Capstone Project
 
 [![CI/CD Pipeline](https://github.com/PranavNayal/devopsProject/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/PranavNayal/devopsProject/actions/workflows/ci-cd.yml)
 
@@ -29,7 +29,7 @@ flowchart TD
         TF --> EKS[AWS Managed EKS Kubernetes Cluster 1.31]
     end
 
-    subgraph Kubernetes & Helm [Namespace: taskboard]
+    subgraph Kubernetes & Helm [Namespace: flowboard]
         GHCR -.-> HELM[Helm Chart Deployment]
         HELM --> ING[NGINX Ingress Controller]
         ING -->|/| FE_PODS[Frontend Pods: Non-Root NGINX, 2 Replicas]
@@ -183,7 +183,7 @@ terraform plan
 terraform apply
 
 # Connect kubectl to newly provisioned EKS cluster
-aws eks update-kubeconfig --region ap-southeast-2 --name taskboard-eks --profile devops-project
+aws eks update-kubeconfig --region ap-southeast-2 --name flowboard-eks --profile devops-project
 
 # Destroy cloud resources after evaluation to prevent ongoing charges
 terraform destroy
@@ -193,23 +193,23 @@ terraform destroy
 
 ## 8. Kubernetes Deployment with Helm
 
-The application is packaged into a reusable Helm chart located at `helm/taskboard/`:
+The application is packaged into a reusable Helm chart located at `helm/flowboard/`:
 
 ```bash
 # Create dedicated namespace
 kubectl apply -f k8s/namespace.yaml
 
-# Deploy or upgrade TaskBoard via Helm
-helm upgrade --install taskboard ./helm/taskboard \
-  --namespace taskboard \
+# Deploy or upgrade FlowBoard via Helm
+helm upgrade --install flowboard ./helm/flowboard \
+  --namespace flowboard \
   --create-namespace \
-  -f helm/taskboard/values.yaml
+  -f helm/flowboard/values.yaml
 
 # Verify deployment status
-kubectl get pods -n taskboard
-kubectl get svc -n taskboard
-kubectl get hpa -n taskboard
-helm list -n taskboard
+kubectl get pods -n flowboard
+kubectl get svc -n flowboard
+kubectl get hpa -n flowboard
+helm list -n flowboard
 ```
 
 ---
@@ -217,7 +217,7 @@ helm list -n taskboard
 ## 9. Observability (Prometheus & Grafana)
 
 1. The FastAPI backend instruments every HTTP request and exports metrics at `/metrics`.
-2. A `ServiceMonitor` (`helm/taskboard/templates/servicemonitor.yaml`) configures the Prometheus Operator to scrape the backend every 15 seconds.
+2. A `ServiceMonitor` (`helm/flowboard/templates/servicemonitor.yaml`) configures the Prometheus Operator to scrape the backend every 15 seconds.
 3. Helm values for deploying Prometheus & Grafana are located in `monitoring/prometheus-values.yaml`.
 
 ---
@@ -229,16 +229,16 @@ Manifests for common operational failure modes are provided in `troubleshooting/
 1. **ImagePullBackOff Lab**:
    ```bash
    kubectl apply -f troubleshooting/broken-image.yaml
-   kubectl get pods -n taskboard
-   kubectl describe pod <pod-name> -n taskboard
+   kubectl get pods -n flowboard
+   kubectl describe pod <pod-name> -n flowboard
    ```
    *Diagnosis*: Identifies non-existent container image tag in pod events.
 
 2. **Service Label Mismatch Lab**:
    ```bash
    kubectl apply -f troubleshooting/broken-service.yaml
-   kubectl get endpoints broken-service -n taskboard
-   kubectl get pods --show-labels -n taskboard
+   kubectl get endpoints broken-service -n flowboard
+   kubectl get pods --show-labels -n flowboard
    ```
    *Diagnosis*: Service selector does not match pod labels, resulting in 0 endpoints and traffic routing failure.
 
@@ -247,12 +247,15 @@ Manifests for common operational failure modes are provided in `troubleshooting/
 ## Presentation & Slide Deck (Module M10)
 
 The comprehensive capstone presentation deck and speaker notes are available in the repository:
-- **PowerPoint Presentation Deck**: [`presentation/TaskBoard_DevOps_Capstone_Presentation.pptx`](file:///home/pranav/devopsProject/presentation/TaskBoard_DevOps_Capstone_Presentation.pptx)
-  - 12 widescreen (16:9) slides covering architecture, testing, Docker, CI/CD, DevSecOps, Terraform, Kubernetes, Observability, and Live Demo runbook.
-- **Speaker Notes & Script**: [`presentation/PRESENTATION_NOTES.md`](file:///home/pranav/devopsProject/presentation/PRESENTATION_NOTES.md)
+- **PDF Presentation Deck**: [`presentation/FlowBoard_DevOps_Capstone_Presentation.pdf`](presentation/FlowBoard_DevOps_Capstone_Presentation.pdf)
+  - 40 widescreen (16:9) slides with diagrams covering architecture, testing, Docker, CI/CD, DevSecOps, Terraform, Kubernetes, Observability, and Live Demo runbook.
+- **PowerPoint Presentation Deck**: [`presentation/FlowBoard_DevOps_Capstone_Presentation.pptx`](presentation/FlowBoard_DevOps_Capstone_Presentation.pptx)
+  - 40 widescreen (16:9) editable slide deck with native shapes, diagrams, and process flowcharts.
+- **Speaker Notes & Script**: [`presentation/PRESENTATION_NOTES.md`](presentation/PRESENTATION_NOTES.md)
   - Slide-by-slide talking points and demo walkthrough.
-- **Presentation Generator Script**: [`scripts/generate_presentation.py`](file:///home/pranav/devopsProject/scripts/generate_presentation.py)
-  - Reproducible script using `python-pptx` to rebuild or update the presentation deck.
+- **Presentation Generator Scripts**:
+  - Python PPTX Generator: [`scripts/generate_presentation.py`](scripts/generate_presentation.py)
+  - Python PDF Generator: [`scripts/generate_pdf.py`](scripts/generate_pdf.py)
 
 ---
 

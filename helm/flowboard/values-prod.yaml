@@ -1,0 +1,10 @@
+frontend:
+  image: ghcr.io/pranavnayal/flowboard-frontend
+backend:
+  image: ghcr.io/pranavnayal/flowboard-backend
+replicaCount: 2
+ingress:
+  enabled: true
+  host: flowboard.example.com
+hpa:
+  enabled: true

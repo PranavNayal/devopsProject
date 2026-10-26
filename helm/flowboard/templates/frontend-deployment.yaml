@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "taskboard.fullname" . }}-frontend
+  name: {{ include "flowboard.fullname" . }}-frontend
   labels:
-    app: {{ include "taskboard.fullname" . }}-frontend
+    app: {{ include "flowboard.fullname" . }}-frontend
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "taskboard.fullname" . }}-frontend
+      app: {{ include "flowboard.fullname" . }}-frontend
   template:
     metadata:
       labels:
-        app: {{ include "taskboard.fullname" . }}-frontend
+        app: {{ include "flowboard.fullname" . }}-frontend
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

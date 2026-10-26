@@ -17,7 +17,7 @@ def test_root(client):
     response = client.get("/")
     assert response.status_code == status.HTTP_200_OK
     data = response.json()
-    assert data["service"] == "TaskBoard API"
+    assert data["service"] == "FlowBoard API"
     assert data["version"] == "1.0.0"
 
 def test_create_task(client):

@@ -1,6 +1,6 @@
 replicaCount: 1
 ingress:
   enabled: true
-  host: taskboard.local
+  host: flowboard.local
 hpa:
   enabled: false

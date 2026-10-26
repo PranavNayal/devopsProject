@@ -1,20 +1,20 @@
 frontend:
-  image: ghcr.io/pranavnayal/taskboard-frontend
+  image: ghcr.io/pranavnayal/flowboard-frontend
   tag: latest
 backend:
-  image: ghcr.io/pranavnayal/taskboard-backend
+  image: ghcr.io/pranavnayal/flowboard-backend
   tag: latest
 replicaCount: 2
-namespace: taskboard
+namespace: flowboard
 imagePullSecrets: []
 postgres:
-  host: taskboard-postgres
-  database: taskboard
-  username: taskboard
-  password: taskboard
+  host: flowboard-postgres
+  database: flowboard
+  username: flowboard
+  password: flowboard
 ingress:
   enabled: false
-  host: taskboard.local
+  host: flowboard.local
 hpa:
   enabled: true
   minReplicas: 2

@@ -1,32 +1,32 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: taskboard-postgres
+    container_name: flowboard-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: taskboard
-      POSTGRES_USER: taskboard
-      POSTGRES_PASSWORD: taskboard
+      POSTGRES_DB: flowboard
+      POSTGRES_USER: flowboard
+      POSTGRES_PASSWORD: flowboard
     ports:
       - "${POSTGRES_PORT:-5433}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U taskboard -d taskboard"]
+      test: ["CMD-SHELL", "pg_isready -U flowboard -d flowboard"]
       interval: 5s
       timeout: 5s
       retries: 5
 
   backend:
     build: ./backend
-    container_name: taskboard-backend
+    container_name: flowboard-backend
     restart: unless-stopped
     environment:
-      DATABASE_URL: postgresql+psycopg://taskboard:taskboard@postgres:5432/taskboard
+      DATABASE_URL: postgresql+psycopg://flowboard:flowboard@postgres:5432/flowboard
     networks:
       default:
         aliases:
-          - taskboard-backend
+          - flowboard-backend
           - backend
     depends_on:
       postgres:
@@ -36,7 +36,7 @@ services:
 
   frontend:
     build: ./frontend
-    container_name: taskboard-frontend
+    container_name: flowboard-frontend
     restart: unless-stopped
     depends_on:
       - backend

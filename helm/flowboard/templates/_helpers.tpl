@@ -1,8 +1,8 @@
-{{- define "taskboard.name" -}}
+{{- define "flowboard.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end }}
 
-{{- define "taskboard.fullname" -}}
+{{- define "flowboard.fullname" -}}
 {{- if .Values.fullnameOverride -}}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}

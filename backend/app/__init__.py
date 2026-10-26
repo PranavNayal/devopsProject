@@ -1,1 +1,1 @@
-"""TaskBoard backend application package."""
+"""FlowBoard backend application package."""

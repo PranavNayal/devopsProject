@@ -1,4 +1,4 @@
-name: TaskBoard CI/CD Pipeline
+name: FlowBoard CI/CD Pipeline
 
 on:
   push:
@@ -70,16 +70,16 @@ jobs:
 
       - name: Build Backend Image
         run: |
-          docker build -t ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-backend:${{ github.sha }} ./backend
+          docker build -t ghcr.io/${{ steps.prep.outputs.owner }}/flowboard-backend:${{ github.sha }} ./backend
 
       - name: Build Frontend Image
         run: |
-          docker build -t ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-frontend:${{ github.sha }} ./frontend
+          docker build -t ghcr.io/${{ steps.prep.outputs.owner }}/flowboard-frontend:${{ github.sha }} ./frontend
 
       - name: Scan Backend Image with Trivy
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-backend:${{ github.sha }}
+          image-ref: ghcr.io/${{ steps.prep.outputs.owner }}/flowboard-backend:${{ github.sha }}
           format: 'table'
           severity: 'HIGH,CRITICAL'
           ignore-unfixed: true
@@ -88,7 +88,7 @@ jobs:
       - name: Scan Frontend Image with Trivy
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-frontend:${{ github.sha }}
+          image-ref: ghcr.io/${{ steps.prep.outputs.owner }}/flowboard-frontend:${{ github.sha }}
           format: 'table'
           severity: 'HIGH,CRITICAL'
           ignore-unfixed: true
@@ -97,8 +97,8 @@ jobs:
       - name: Push Container Images to GHCR
         if: github.ref == 'refs/heads/main'
         run: |
-          docker push ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-backend:${{ github.sha }}
-          docker push ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-frontend:${{ github.sha }}
+          docker push ghcr.io/${{ steps.prep.outputs.owner }}/flowboard-backend:${{ github.sha }}
+          docker push ghcr.io/${{ steps.prep.outputs.owner }}/flowboard-frontend:${{ github.sha }}
 
   deploy:
     name: Deploy to Kubernetes with Helm
@@ -122,7 +122,7 @@ jobs:
         uses: azure/setup-helm@v4
 
       - name: Lint Helm Chart
-        run: helm lint ./helm/taskboard
+        run: helm lint ./helm/flowboard
 
       - name: Deploy to Kubernetes with Helm
         env:
@@ -135,10 +135,10 @@ jobs:
           fi
           mkdir -p ~/.kube
           echo "$KUBE_CONFIG_DATA" | base64 -d > ~/.kube/config
-          helm upgrade --install taskboard ./helm/taskboard \
-            --namespace taskboard \
+          helm upgrade --install flowboard ./helm/flowboard \
+            --namespace flowboard \
             --create-namespace \
             --set backend.tag=${{ github.sha }} \
             --set frontend.tag=${{ github.sha }} \
-            --set backend.image=ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-backend \
-            --set frontend.image=ghcr.io/${{ steps.prep.outputs.owner }}/taskboard-frontend
+            --set backend.image=ghcr.io/${{ steps.prep.outputs.owner }}/flowboard-backend \
+            --set frontend.image=ghcr.io/${{ steps.prep.outputs.owner }}/flowboard-frontend

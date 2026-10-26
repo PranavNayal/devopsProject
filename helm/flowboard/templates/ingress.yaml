@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "taskboard.fullname" . }}-ingress
+  name: {{ include "flowboard.fullname" . }}-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: "10m"
@@ -16,14 +16,14 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ include "taskboard.fullname" . }}-backend
+            name: {{ include "flowboard.fullname" . }}-backend
             port:
               number: 8000
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: {{ include "taskboard.fullname" . }}-frontend
+            name: {{ include "flowboard.fullname" . }}-frontend
             port:
               number: 80
 {{- end }}
