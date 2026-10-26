@@ -2,6 +2,8 @@
 
 [![CI/CD Pipeline](https://github.com/PranavNayal/devopsProject/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/PranavNayal/devopsProject/actions/workflows/ci-cd.yml)
 
+> 📊 **Capstone Presentation Deck**: View the complete 40-slide visual presentation directly in GitHub: [**`demo/FlowBoard_DevOps_Capstone_Presentation.pdf`**](demo/FlowBoard_DevOps_Capstone_Presentation.pdf)
+
 A production-grade, cloud-native project management SaaS application engineered by **Pranav Nayal** to demonstrate the complete modern DevOps lifecycle: from local containerized development to automated CI/CD quality gates, container vulnerability scanning, AWS Infrastructure as Code with Terraform, Kubernetes packaging with Helm, autoscaling, and end-to-end observability.
 
 ---
@@ -247,8 +249,9 @@ Manifests for common operational failure modes are provided in `troubleshooting/
 ## Presentation & Slide Deck (Module M10)
 
 The comprehensive capstone presentation deck and speaker notes are available in the repository:
-- **PDF Presentation Deck**: [`presentation/FlowBoard_DevOps_Capstone_Presentation.pdf`](presentation/FlowBoard_DevOps_Capstone_Presentation.pdf)
-  - 40 widescreen (16:9) slides with diagrams covering architecture, testing, Docker, CI/CD, DevSecOps, Terraform, Kubernetes, Observability, and Live Demo runbook.
+- **Presentation PDF (Direct View in Demo Folder)**: [**`demo/FlowBoard_DevOps_Capstone_Presentation.pdf`**](demo/FlowBoard_DevOps_Capstone_Presentation.pdf)
+  - 40 widescreen (16:9) slides with diagrams covering architecture, testing, Docker, CI/CD, DevSecOps, Terraform, Kubernetes, Observability, and Live Demo runbook. Click to view directly in GitHub's PDF reader.
+- **Presentation PDF (Source Folder)**: [`presentation/FlowBoard_DevOps_Capstone_Presentation.pdf`](presentation/FlowBoard_DevOps_Capstone_Presentation.pdf)
 - **PowerPoint Presentation Deck**: [`presentation/FlowBoard_DevOps_Capstone_Presentation.pptx`](presentation/FlowBoard_DevOps_Capstone_Presentation.pptx)
   - 40 widescreen (16:9) editable slide deck with native shapes, diagrams, and process flowcharts.
 - **Speaker Notes & Script**: [`presentation/PRESENTATION_NOTES.md`](presentation/PRESENTATION_NOTES.md)
